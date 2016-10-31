@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+
+  "name": "Launch GCal to GSheets Webapp",
+  "description": "Click export button",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "images/arrow-up-icon.png",
+    "default_popup": "Index.html"
+  },
+
+  "icons": { "16": "images/arrow-up-icon16.png",
+           "48": "images/arrow-up-icon48.png",
+          "128": "images/arrow-up-icon.png" },
+ 
+  "background": {
+      "scripts": ["background.js"],
+      "persistent": false
+  },	
+  "permissions":[
+  	"https://script.google.com/macros/s/AKfycbzM1pJVozTCKM5DIDuybMqAywx7kvKXhnZHB1LZaEpgTzw_GqM/exec/*",
+    "debugger",
+    "storage"
+  ],
+  
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["exportScript.js"],
+      "css": ["styles.css"]
+    }
+  ]
+}

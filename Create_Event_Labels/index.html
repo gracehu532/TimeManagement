@@ -1,0 +1,65 @@
+<!-- 
+Grace Hu
+12/9/15
+index.html
+Description: Contains UI of the Chrome extension
+-->
+
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+    <title>Create a Google Calendar Event</title>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body ng-controller='labelCtrl'>
+    <div class='container'>
+		
+		<!--ACCEPT USER INPUT -->
+        <div class='row'>
+            <div class='col-md-12'>
+                <h5>Create a Google Calendar event: </h5>
+                <form id='label-form' ng-submit='add()'>
+                    <div class="form-group">
+                        <input type='text' id='new-label' ng-model='newContent' class="form-control" placeholder="Add new tag here"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+		
+		<!-- LIST OF LABELS -->
+        <div class='row' id="label-list">
+        	<div class='label-item col-md-12' ng-repeat='label in labelList track by label.id| orderBy: createdAt' >
+                <input type='checkbox' ng-model='label.completed' ng-click='toggleCompleted()'/>
+                <span class='label-content' style="text-transform:uppercase">{{label.content}}</span>
+                <a class='btn-remove-label pull-right' ng-click='remove(label)'><i class='glyphicon glyphicon-remove'></i> </a>
+            </div>
+        </div>
+
+		<!-- SUBMIT BUTTON -->	
+		<div class='row'>
+            <div class='col-md-12'>
+                <div id='toolbar'>
+                    <a id="btn-submit"
+                        ng-click='submit()'
+                        class='btn btn-small btn-default pull-right'
+                        ng-show="labelList.length > 0">
+                        <i class="glyphicon glyphicon-submit"></i> Create
+                    </a>
+                </div>
+            </div>
+        </div>
+		
+		<!-- debugging: prints out the message sent to gcal to sheets extension -->
+		<!--<div id="log"></div>-->
+	
+    </div>
+    
+    <script type="text/javascript" src="lib/jquery/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="lib/angular/angular.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/labelCtrl.js"></script>
+    <script type="text/javascript" src="app/labelStorage.js"></script>
+</body>
+</html>

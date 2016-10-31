@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name"            : "Create GCal Event",
+  "description"     : "Create GCal Events with Custom Labels",
+  "short_name"      : "Create Event",
+  "version"         : "0.1",
+  "browser_action": {
+    "default_popup": "index.html",    
+    "default_icon" : "images/logo.png"
+  },
+
+  "icons": { "16": "images/logo16.png",
+           "48": "images/logo48.png",
+          "128": "images/logo.png" },
+
+  	
+  "permissions": [
+    "debugger",
+    "storage"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://ssl.google-analytics.com; object-src 'self'"
+}
